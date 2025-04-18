@@ -1,6 +1,7 @@
 
 🏸 Badminton Tournament (Unity)
-A Unity-based application for managing and simulating badminton tournaments. Designed for use in casual or educational settings to track player progress, manage matchups, and handle scoring in an interactive way.
+
+    A Unity-based application for managing and simulating badminton tournaments. Designed for use in casual or educational settings to track player progress, manage matchups, and handle scoring in an interactive way.
 
 🎮 Features
 Player name entry and tracking
