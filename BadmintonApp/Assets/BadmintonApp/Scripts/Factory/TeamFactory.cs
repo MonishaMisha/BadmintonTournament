@@ -4,9 +4,9 @@ namespace com.badmintonApp.BadmintonApp.Scripts.Factory
 {
     public class TeamFactory : ITeamFactory
     {
-        public ITeam CreateTeam(string teamName, params IPlayer[] players)
+        public ITeam CreateTeam(int teamId, string teamName, params IPlayer[] players)
         {
-            return new Team(teamName, players);
+            return new Team(teamId, teamName, players);
         }
     }
 }

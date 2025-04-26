@@ -1,8 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using com.badmintonApp.BadmintonApp.Scripts.Core;
 using com.badmintonApp.BadmintonApp.Scripts.Data;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +17,8 @@ namespace com.badmintonApp.BadmintonApp.Scripts.UI
         private Button _addPlayersButton;
         [SerializeField]
         private Button _generateTeamsButton;
+        [SerializeField]
+        private TextMeshProUGUI _totalPlayersText;
         [SerializeField]
         private PlayersListItem _playersListItemPrefab;
         [SerializeField] private Transform _parentTransform;
@@ -42,6 +44,7 @@ namespace com.badmintonApp.BadmintonApp.Scripts.UI
           _addPlayersButton.onClick.AddListener(OnAddPlayerClicked);
           _generateTeamsButton.onClick.AddListener(OnGenerateTeamsClicked);
           EventCommunication.PlayerAdded += OnPlayerAdded;
+          UpdatePlayerCount();
         }
         
         private void OnPlayerAdded(IPlayer addedPlayer)
@@ -50,7 +53,7 @@ namespace com.badmintonApp.BadmintonApp.Scripts.UI
             item.OnRemovePlayerClicked += OnRemovePlayerClicked;
             item.SetPlayerData(addedPlayer);
             _playersListItems.Add(item);
-
+            UpdatePlayerCount();
         }
         
         private void OnRemovePlayerClicked(IPlayer removedPlayer)
@@ -66,6 +69,12 @@ namespace com.badmintonApp.BadmintonApp.Scripts.UI
 
                return false;
            });
+           UpdatePlayerCount();
+        }
+
+        private void UpdatePlayerCount()
+        {
+            _totalPlayersText.text = "Total Players: " + _playersListItems.Count;
         }
 
         private void OnGenerateTeamsClicked()

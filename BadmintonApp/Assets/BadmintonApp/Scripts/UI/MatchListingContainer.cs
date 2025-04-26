@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using com.badmintonApp.BadmintonApp.Scripts.Data;
+using TMPro;
 using UnityEngine;
 
 namespace com.badmintonApp.BadmintonApp.Scripts.UI
@@ -9,6 +10,7 @@ namespace com.badmintonApp.BadmintonApp.Scripts.UI
     {
         public event Action ScoreUpdated;
         [SerializeField] private GameListingItem _gameListingItemPrefab;
+        [SerializeField] private TextMeshProUGUI _SetNameText;
         [SerializeField] private Transform _parentTransform;
         List<GameListingItem> gameListingItems = new List<GameListingItem>();
         [SerializeField] private MatchDetailsPopup _matchDetailsPopup;
@@ -21,12 +23,23 @@ namespace com.badmintonApp.BadmintonApp.Scripts.UI
         public void ShowGames(IGame[] games)
         {
             DestroyAllChildren();
+            var gameCounter = 0;
+            var setCount = 1;
+            var gamesPerSet = games.Length / LocalConfig.MatchLegs;
+
             foreach (var game in games)
             {
+                if (gameCounter % gamesPerSet == 0)
+                {
+                   var setText = Instantiate(_SetNameText, _parentTransform);
+                   setText.text = $"Set {setCount}";
+                   setCount++;
+                }
                 var matchListingItem = Instantiate(_gameListingItemPrefab, _parentTransform);
                 matchListingItem.SetMatchData(game);
                 matchListingItem.ShowDetailsClicked += OnDetailsClicked;
                 gameListingItems.Add(matchListingItem);
+                gameCounter++;
             }
         }
 

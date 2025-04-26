@@ -43,8 +43,8 @@ namespace com.badmintonApp.BadmintonApp.Scripts.UI
             RemoveAllPlayerNames();
             var team1Detail = game.TeamsDetails[0];
             var team2Detail = game.TeamsDetails[1];
-            _team1NameText.text =  team1Detail.Team.Name;
-            _team2NameText.text =  team2Detail.Team.Name;
+            _team1NameText.text =  $"Team {team1Detail.Team.TeamId}";
+            _team2NameText.text =   $"Team {team2Detail.Team.TeamId}";
             _team1ScoreText.text = team1Detail.Score.ToString();
             _team2ScoreText.text = team2Detail.Score.ToString();
 

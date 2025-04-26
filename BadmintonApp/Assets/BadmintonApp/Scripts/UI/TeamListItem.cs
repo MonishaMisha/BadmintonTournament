@@ -17,7 +17,7 @@ namespace com.badmintonApp.BadmintonApp.Scripts.UI
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public void SetTeamData(ITeam team)
         {
-            teamName.text = team.Name;
+            teamName.text = $"Team {team.TeamId}";
             player1Name.text = $"Player 1 : {team.Players[0].Name}";
             player2Name.text = $"Player 2 : {team.Players[1].Name}";
         }

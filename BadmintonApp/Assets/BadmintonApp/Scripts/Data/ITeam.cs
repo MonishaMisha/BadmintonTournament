@@ -4,6 +4,7 @@ namespace com.badmintonApp.BadmintonApp.Scripts.Data
 {
     public interface ITeam
     {
+        int TeamId { get; }
         int Rank { get; }
         int TotalWins { get; } 
         int TotalLoses { get; }

@@ -25,7 +25,7 @@ namespace com.badmintonApp.BadmintonApp.Scripts.UI
             _winText.text = team.TotalWins.ToString();
             _loseText.text = team.TotalLoses.ToString();
             _pointsText.text = team.GamePoints.ToString();
-            _winPercentageText.text = team.WinPercentage.ToString("F0" + "%");
+            _winPercentageText.text = team.WinPercentage.ToString("F0") + "%";
             _scoreGainedText.text = team.TotalPointsScored.ToString();
             _scoreConcededText.text = team.TotalPointsConceded.ToString();
             _scoreDifferenceText.text = GetPointDifference(team.PointDifference);

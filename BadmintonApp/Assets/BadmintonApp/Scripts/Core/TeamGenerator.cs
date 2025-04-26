@@ -73,8 +73,8 @@ namespace com.badmintonApp.BadmintonApp.Scripts.Core
             for (int i = 0; i < tempTeams.Count; i++)
             {
                 var tempPlayes = tempTeams[i].ToArray();
-                var teamName = $"Team {GetTeamNames(tempPlayes)}";
-                finalTeams.Add(_teamFactory.CreateTeam(teamName, tempPlayes));
+                var teamName = $"{GetTeamNames(tempPlayes)}";
+                finalTeams.Add(_teamFactory.CreateTeam(i+1, teamName, tempPlayes));
             }
 
             return finalTeams;
@@ -85,7 +85,7 @@ namespace com.badmintonApp.BadmintonApp.Scripts.Core
             var name = "";
             foreach (var player in players)
             {
-                var partName = player.Name.Substring(0, 3).ToUpper();
+                var partName = player.Name.ToUpper();
                 name += $"{partName} - ";
             }
             name = name.Substring(0,name.Length - 3);

@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace com.badmintonApp.BadmintonApp.Scripts.Data
 {
     public interface IGame
     { 
+        event Action GameEnded;
         bool IsGameEnded { get; }
         IReadOnlyList<ITeamData> TeamsDetails { get; }
         void UpdateScore(ITeam team, int score);

@@ -4,6 +4,7 @@ namespace com.badmintonApp.BadmintonApp.Scripts.Data
 {
     public class Team : ITeam
     {
+        public int TeamId { get; }
         public int Rank { get; private set; }
         public int TotalPointsConceded { get; private set; }
         public string Name { get; }
@@ -22,8 +23,9 @@ namespace com.badmintonApp.BadmintonApp.Scripts.Data
         public IPlayer[] Players { get;}
 
         
-        public Team(string name, IPlayer[] players)
+        public Team(int teamId, string name, IPlayer[] players)
         {
+            TeamId = teamId;
             Name = name;
             Players = players;
         }

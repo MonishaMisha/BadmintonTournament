@@ -12,20 +12,29 @@ namespace com.badmintonApp.BadmintonApp.Scripts.UI
         [SerializeField] private TextMeshProUGUI _team1NameText;
         [SerializeField] private TextMeshProUGUI _team2NameText;
         [SerializeField] private Button _showDetailsButton;
+        [SerializeField] private GameObject _tick;
+        
         IGame _game;
         
         void Start()
         {
             _showDetailsButton.onClick.AddListener(ShowDetailsButtonClicked);
+            _tick.SetActive(false);
         }
 
         public void SetMatchData(IGame game)
         {
             _game = game;
+            _game.GameEnded += OnGameEnded;
             _team1NameText.text = game.TeamsDetails[0].Team.Name;
             _team2NameText.text = game.TeamsDetails[1].Team.Name;
         }
-        
+
+        private void OnGameEnded()
+        {
+            _tick.SetActive(true);
+        }
+
         private void ShowDetailsButtonClicked()
         {
             ShowDetailsClicked?.Invoke(_game);
@@ -34,6 +43,7 @@ namespace com.badmintonApp.BadmintonApp.Scripts.UI
         private void OnDestroy()
         {
             _showDetailsButton.onClick.RemoveAllListeners();
+            _game.GameEnded -= OnGameEnded;
         }
     }
 }

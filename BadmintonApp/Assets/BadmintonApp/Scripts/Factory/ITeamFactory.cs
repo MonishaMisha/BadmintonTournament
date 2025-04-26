@@ -4,6 +4,6 @@ namespace com.badmintonApp.BadmintonApp.Scripts.Factory
 {
     public interface ITeamFactory
     {
-        ITeam CreateTeam(string teamName, params IPlayer[] players);
+        ITeam CreateTeam(int teamId, string teamName, params IPlayer[] players);
     }
 }

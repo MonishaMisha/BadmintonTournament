@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace com.badmintonApp.BadmintonApp.Scripts.Data
 {
     public class Game : IGame
     {
+        public event Action GameEnded;
         public  bool IsGameEnded { get; private set; }
         public IReadOnlyList<ITeamData> TeamsDetails => _teamsDetails;
 
@@ -27,6 +29,7 @@ namespace com.badmintonApp.BadmintonApp.Scripts.Data
         public void EndGame()
         {
             IsGameEnded = true;
+            GameEnded?.Invoke();
             foreach (var teamData in _teamsDetails)
             { 
                 var scoreWon = teamData.Score;
