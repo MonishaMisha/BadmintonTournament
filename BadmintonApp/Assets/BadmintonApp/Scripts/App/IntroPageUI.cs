@@ -10,7 +10,8 @@ namespace com.badmintonApp.BadmintonApp.Scripts.App
         
        [SerializeField]
        private Button _startGameButton;
-
+       [SerializeField]
+       private Toggle _useRandomTeamsToggle;
        private void Start()
        {
            _startGameButton.onClick.AddListener(OnStart);
@@ -18,6 +19,7 @@ namespace com.badmintonApp.BadmintonApp.Scripts.App
 
        private void OnStart()
        {
+           LocalConfig.UseRandomTeams = _useRandomTeamsToggle.isOn;
            OnStartClicked?.Invoke();
        }
 

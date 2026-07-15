@@ -4,6 +4,7 @@
     {
         public static int WinGamePoint = 2;
         public static int MatchLegs = 2;
+        public static bool UseRandomTeams = true;
 
     }
 }

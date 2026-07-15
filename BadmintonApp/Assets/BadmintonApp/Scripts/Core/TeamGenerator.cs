@@ -23,9 +23,33 @@ namespace com.badmintonApp.BadmintonApp.Scripts.Core
 
         public ITeam[] GenerateTeams(IPlayer[] players, int playersPerTeam)
         {
-            return BalanceTeamsRandomized(players, playersPerTeam).ToArray();
+            if (LocalConfig.UseRandomTeams)
+            {
+                return BalanceTeamsRandomized(players, playersPerTeam).ToArray();
+            }
+
+            return GenerateTeamInPlayerListOrder(players, playersPerTeam);
         }
-        
+
+        private ITeam[] GenerateTeamInPlayerListOrder(IPlayer[] players, int playersPerTeam)
+        {
+            var teamPlayers = new List<IPlayer>();
+            var teams = new List<ITeam>();
+            foreach (var t in players)
+            {
+                teamPlayers.Add(t);
+
+                if (teamPlayers.Count() < playersPerTeam)
+                {
+                    continue;
+                }
+                var teamName = $"{GetTeamNames(teamPlayers.ToArray())}";
+                teams.Add(_teamFactory.CreateTeam( teams.Count + 1, teamName, teamPlayers.ToArray()));
+                teamPlayers = new List<IPlayer>();
+            }
+            return teams.ToArray();
+        }
+
         private List<ITeam> BalanceTeamsRandomized(IPlayer[] players, int playersPerTeam)
         {
             int teamCount = (int)Math.Ceiling(players.Length / (double)playersPerTeam);
